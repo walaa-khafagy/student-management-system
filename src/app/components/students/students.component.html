@@ -1,1 +1,12 @@
-<p>students works!</p>
+<div class="container py-4">
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-4">
+    <h1 class="h2 mb-0">Students</h1>
+    <a routerLink="/add-student" class="btn btn-success">Add a new student</a>
+  </div>
+
+  <ng-container *ngIf="students$ | async as students">
+    <app-student-table
+      [students]="students"
+    ></app-student-table>
+  </ng-container>
+</div>
