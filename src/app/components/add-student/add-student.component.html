@@ -52,8 +52,11 @@
                 <div class="mb-3">
                     <label class="form-label" for="phone">Phone</label>
                     <input id="phone" name="phone" type="tel" class="form-control"
-                        [class.is-invalid]="submitted && !phone.trim()" [(ngModel)]="phone" required />
-                    <div class="invalid-feedback" *ngIf="submitted && !phone.trim()">Phone is required.</div>
+                        [class.is-invalid]="submitted && !isPhoneValid()" [(ngModel)]="phone" required maxlength="11"
+                        placeholder="e.g. 01012345678" />
+                    <div class="invalid-feedback" *ngIf="submitted && !isPhoneValid()">
+                        Phone number must consist of numbers only and contain exactly 11 digits.
+                    </div>
                 </div>
 
                 <div class="mb-4">

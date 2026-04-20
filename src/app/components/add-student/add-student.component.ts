@@ -22,6 +22,7 @@ export class AddStudentComponent {
   level: number | null = null;
   enrollmentDate = '';
   isActive = true;
+  private readonly phonePattern = /^\d{11}$/;
 
   submitted = false;
 
@@ -29,6 +30,10 @@ export class AddStudentComponent {
     private readonly studentsService: StudentsService,
     private readonly router: Router,
   ) {}
+
+  isPhoneValid(): boolean {
+    return this.phonePattern.test(this.phone.trim());
+  }
 
   onSubmit(): void {
     this.submitted = true;
@@ -39,7 +44,7 @@ export class AddStudentComponent {
       this.age < 1 ||
       !this.department.trim() ||
       !this.email.trim() ||
-      !this.phone.trim() ||
+      !this.isPhoneValid() ||
       this.GPA === null ||
       this.GPA < 0 ||
       this.GPA > 4
