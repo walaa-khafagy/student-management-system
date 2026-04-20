@@ -1,1 +1,65 @@
-<p>student-details works!</p>
+<div class="container py-4">
+  <ng-container *ngIf="viewModel$ | async as vm">
+    <ng-container *ngIf="vm.student; else notFound">
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-4">
+        <h1 class="h2 mb-0">
+          {{ vm.student.firstName }} {{ vm.student.lastName }}
+        </h1>
+        <a routerLink="/students" class="btn btn-outline-secondary">Back to list</a>
+      </div>
+
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <dl class="row mb-0">
+            <dt class="col-sm-4 col-md-3">ID</dt>
+            <dd class="col-sm-8 col-md-9">{{ vm.student.id }}</dd>
+
+            <dt class="col-sm-4 col-md-3">Age</dt>
+            <dd class="col-sm-8 col-md-9">{{ vm.student.age }}</dd>
+
+            <dt class="col-sm-4 col-md-3">Gender</dt>
+            <dd class="col-sm-8 col-md-9">{{ vm.student.gender }}</dd>
+
+            <dt class="col-sm-4 col-md-3">Email</dt>
+            <dd class="col-sm-8 col-md-9">{{ vm.student.email }}</dd>
+
+            <dt class="col-sm-4 col-md-3">Phone</dt>
+            <dd class="col-sm-8 col-md-9">{{ vm.student.phone }}</dd>
+
+            <dt class="col-sm-4 col-md-3">Address</dt>
+            <dd class="col-sm-8 col-md-9">{{ vm.student.address }}</dd>
+
+            <dt class="col-sm-4 col-md-3">City</dt>
+            <dd class="col-sm-8 col-md-9">{{ vm.student.city }}</dd>
+
+            <dt class="col-sm-4 col-md-3">Country</dt>
+            <dd class="col-sm-8 col-md-9">{{ vm.student.country }}</dd>
+
+            <dt class="col-sm-4 col-md-3">Department</dt>
+            <dd class="col-sm-8 col-md-9">{{ vm.student.department }}</dd>
+
+            <dt class="col-sm-4 col-md-3">Level</dt>
+            <dd class="col-sm-8 col-md-9">{{ vm.student.level }}</dd>
+
+            <dt class="col-sm-4 col-md-3">GPA</dt>
+            <dd class="col-sm-8 col-md-9">{{ vm.student.GPA | number: '1.1-2' }}</dd>
+
+            <dt class="col-sm-4 col-md-3">Enrollment date</dt>
+            <dd class="col-sm-8 col-md-9">{{ vm.student.enrollmentDate }}</dd>
+
+            <dt class="col-sm-4 col-md-3">Active</dt>
+            <dd class="col-sm-8 col-md-9">
+              <span *ngIf="vm.student.isActive" class="badge text-bg-success">Yes</span>
+              <span *ngIf="!vm.student.isActive" class="badge text-bg-danger">No</span>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #notFound>
+    <div class="alert alert-warning" role="alert">Student not found.</div>
+    <a routerLink="/students" class="btn btn-primary">Back to students</a>
+  </ng-template>
+</div>
