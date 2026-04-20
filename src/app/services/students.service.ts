@@ -55,4 +55,11 @@ export class StudentsService {
   deleteStudent(id: number): void {
     this.studentsSubject.next(this.getStudents().filter((s) => s.id !== id));
   }
+
+  private nextId = Math.max(0, ...INITIAL_STUDENTS.map((s) => s.id)) + 1;
+
+  addStudent(student: Omit<Student, 'id'>): void {
+    const students = [...this.getStudents(), { ...student, id: this.nextId++ }];
+    this.studentsSubject.next(students);
+  }
 }
