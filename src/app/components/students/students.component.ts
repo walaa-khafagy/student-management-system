@@ -15,5 +15,13 @@ export class StudentsComponent {
   constructor(
     private readonly studentsService: StudentsService,
     private readonly router: Router,
-  ) {}
+  ) { }
+
+  onDeleteStudent(id: number): void {
+    this.studentsService.deleteStudent(id);
+  }
+
+  onViewStudent(id: number): void {
+    void this.router.navigate(['/student', id]);
+  }
 }

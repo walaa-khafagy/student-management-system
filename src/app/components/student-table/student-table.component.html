@@ -19,6 +19,14 @@
         <td>{{ student.age }}</td>
         <td>{{ student.department}}</td>
         <td>{{ student.GPA | number: '1.1-2' }}</td>
+        <td class="text-end text-nowrap">
+          <button type="button" class="btn btn-sm btn-outline-info me-1" (click)="emitView(student.id)">
+            View
+          </button>
+          <button type="button" class="btn btn-sm btn-outline-danger" (click)="emitDelete(student.id)">
+            Delete
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>

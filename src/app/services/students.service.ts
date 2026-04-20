@@ -47,9 +47,12 @@ export class StudentsService {
   private readonly studentsSubject = new BehaviorSubject<Student[]>(INITIAL_STUDENTS);
 
   readonly students$: Observable<Student[]> = this.studentsSubject.asObservable();
-  
+
   getStudents(): Student[] {
     return this.studentsSubject.getValue();
   }
 
+  deleteStudent(id: number): void {
+    this.studentsSubject.next(this.getStudents().filter((s) => s.id !== id));
+  }
 }
